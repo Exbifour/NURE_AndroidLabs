@@ -2,6 +2,7 @@ package ua.nure.stanchyk.pz3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -151,7 +152,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
-        txtResult.setText(value2);
+
+//        if((Double.valueOf(value2) * 10) % 10 == 0) {
+//            Log.d("error", Integer.valueOf(value2) + "");
+//            value2 = Integer.valueOf(value2) + "";
+//        }
+//        txtResult.setText(value2);
+
         if(clearValue2)
             value2 = "";
     }
