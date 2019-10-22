@@ -140,9 +140,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnEquals:
                 callEquals();
                 clearValue2 = true;
+                actionId = -1;
                 break;
             case R.id.btnC:
                 value2 = "0";
+                value1 = "0";
                 clearValue2 = true;
                 break;
             case R.id.btnDecimal:
@@ -153,18 +155,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+        // TODO Celoe chislo.
 //        if((Double.valueOf(value2) * 10) % 10 == 0) {
 //            Log.d("error", Integer.valueOf(value2) + "");
-//            value2 = Integer.valueOf(value2) + "";
+//            value2 = value2.substring(0, value2.indexOf("."));
 //        }
-//        txtResult.setText(value2);
+        txtResult.setText(value2);
 
-        if(clearValue2)
+        if(clearValue2) {
             value2 = "";
+            clearValue2 = false;
+        }
     }
 
 
     private void callEquals() {
+        if (value2.isEmpty()){
+            value2 = "0";
+        }
         switch (actionId) {
             case 1: // Plus actionId
                 value2 = String.valueOf(Double.valueOf(value1) + Double.valueOf(value2));
