@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtResult;
@@ -192,11 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        // TODO Celoe chislo.
-//        if((Double.valueOf(value2) * 10) % 10 == 0) {
-//            Log.d("error", Integer.valueOf(value2) + "");
-//            value2 = value2.substring(0, value2.indexOf("."));
-//        }
         txtResult.setText(value2);
 
         if(clearValue2) {
@@ -224,6 +221,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 value2 = String.valueOf(Double.valueOf(value1) / Double.valueOf(value2));
                 break;
         }
+
+        if (Pattern.matches("^\\d+\\.0*$", value2)) {
+            value2 = value2.substring(0, value2.indexOf("."));
+        }
+
         isDotted = false;
         value1 = value2;
     }
