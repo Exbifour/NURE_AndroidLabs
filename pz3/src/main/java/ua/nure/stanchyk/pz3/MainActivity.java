@@ -2,10 +2,13 @@ package ua.nure.stanchyk.pz3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +42,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initControls();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("value1", value1);
+        outState.putString("value2", value2);
+        outState.putString("textField", txtResult.getText().toString());
+        outState.putInt("actionId", actionId);
+        outState.putBoolean("isDotted", isDotted);
+
+        super.onSaveInstanceState(outState);
+    }
+    // получение ранее сохраненного состояния
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        value1 = savedInstanceState.getString("value1");
+        value2 = savedInstanceState.getString("value2");
+        actionId = savedInstanceState.getInt("actionId");
+        isDotted = savedInstanceState.getBoolean("isDotted");
+
+        txtResult.setText(savedInstanceState.getString("textField"));
     }
 
     private void initControls() {
@@ -87,34 +113,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.btnZero:
-                value2 += "0";
+                addNumber("0");
+                //value2 += "0";
                 break;
             case R.id.btnOne:
-                value2 += "1";
+                addNumber("1");
+                //value2 += "1";
                 break;
             case R.id.btnTwo:
-                value2 += "2";
+                addNumber("2");
+                ///value2 += "2";
                 break;
             case R.id.btnThree:
-                value2 += "3";
+                addNumber("3");
+                //value2 += "3";
                 break;
             case R.id.btnFour:
-                value2 += "4";
+                addNumber("4");
+//                value2 += "4";
                 break;
             case R.id.btnFive:
-                value2 += "5";
+                addNumber("5");
+//                value2 += "5";
                 break;
             case R.id.btnSix:
-                value2 += "6";
+                addNumber("6");
+//                value2 += "6";
                 break;
             case R.id.btnSeven:
-                value2 += "7";
+                addNumber("7");
+//                value2 += "7";
                 break;
             case R.id.btnEight:
-                value2 += "8";
+                addNumber("8");
+//                value2 += "8";
                 break;
             case R.id.btnNine:
-                value2 += "9";
+                addNumber("9");
+//                value2 += "9";
                 break;
             case R.id.btnPlus:
                 callEquals();
@@ -139,26 +175,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnEquals:
                 callEquals();
                 clearValue2 = true;
+                actionId = -1;
                 break;
             case R.id.btnC:
+                value1 = "0";
                 value2 = "0";
                 clearValue2 = true;
+                isDotted = false;
                 break;
             case R.id.btnDecimal:
+                if(value2.isEmpty())
+                    value2 = "0";
                 if(!isDotted) {
-                    value2 += ".";
+                    addNumber(".");
+//                    value2 += ".";
                     isDotted = true;
                 }
                 break;
         }
+
         txtResult.setText(value2);
-        if(clearValue2)
+
+        if(clearValue2) {
             value2 = "";
+            clearValue2 = false;
+        }
     }
 
-
     private void callEquals() {
+        if (value2.isEmpty()){
+            value2 = "0";
+        }
         switch (actionId) {
+            case -1:
             case 1: // Plus actionId
                 value2 = String.valueOf(Double.valueOf(value1) + Double.valueOf(value2));
                 break;
@@ -172,6 +221,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 value2 = String.valueOf(Double.valueOf(value1) / Double.valueOf(value2));
                 break;
         }
+
+        if (Pattern.matches("^\\d+\\.0*$", value2)) {
+            value2 = value2.substring(0, value2.indexOf("."));
+        }
+
+        isDotted = false;
         value1 = value2;
+    }
+
+    private void addNumber(String val) {
+        if(actionId == -1) {
+            actionId = 1;
+            value2 = val;
+            value1 = "0";
+        }
+        else {
+            value2 += val;
+        }
     }
 }
