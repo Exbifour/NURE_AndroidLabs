@@ -1,1 +1,1 @@
-include ':app', ':pz1', ':pz2', ':pz3'
+include ':app', ':pz1', ':pz2', ':pz3', ':lab1'

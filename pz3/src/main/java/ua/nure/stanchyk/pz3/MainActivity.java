@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String value2 = "";
     private int actionId = 1;
     private boolean isDotted = false;
+    private boolean waitingForNumber = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initControls();
     }
 
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outState.putString("textField", txtResult.getText().toString());
         outState.putInt("actionId", actionId);
         outState.putBoolean("isDotted", isDotted);
+        outState.putBoolean("waitingForNumber", waitingForNumber);
 
         super.onSaveInstanceState(outState);
     }
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value2 = savedInstanceState.getString("value2");
         actionId = savedInstanceState.getInt("actionId");
         isDotted = savedInstanceState.getBoolean("isDotted");
+        waitingForNumber = savedInstanceState.getBoolean("waitingForNumber");
 
         txtResult.setText(savedInstanceState.getString("textField"));
     }
@@ -155,26 +157,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPlus:
                 callEquals();
                 actionId = 1;
-                clearValue2 = true;
+                if(waitingForNumber)
+                    clearValue2 = true;
                 break;
             case R.id.btnMinus:
                 callEquals();
                 actionId = 2;
-                clearValue2 = true;
+                if(waitingForNumber)
+                    clearValue2 = true;
                 break;
             case R.id.btnMultiply:
                 callEquals();
                 actionId = 3;
-                clearValue2 = true;
+                if(waitingForNumber)
+                    clearValue2 = true;
                 break;
             case R.id.btnDivide:
                 callEquals();
                 actionId = 4;
-                clearValue2 = true;
+                if(waitingForNumber)
+                    clearValue2 = true;
                 break;
             case R.id.btnEquals:
                 callEquals();
-                clearValue2 = true;
+                if(waitingForNumber)
+                    clearValue2 = true;
                 actionId = -1;
                 break;
             case R.id.btnC:
@@ -203,6 +210,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void callEquals() {
+        if(waitingForNumber) {
+            return;
+        }
         if (value2.isEmpty()){
             value2 = "0";
         }
@@ -222,15 +232,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        if (Pattern.matches("^\\d+\\.0*$", value2)) {
+        if (Pattern.matches("^-?\\d+\\.0*$", value2)) {
             value2 = value2.substring(0, value2.indexOf("."));
+            isDotted = false;
         }
 
-        isDotted = false;
         value1 = value2;
+        waitingForNumber = true;
     }
 
     private void addNumber(String val) {
+        waitingForNumber = false;
         if(actionId == -1) {
             actionId = 1;
             value2 = val;

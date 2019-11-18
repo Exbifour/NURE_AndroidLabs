@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Stanchyk Lab1</string>
+    <string name="importance">Importance: %d</string>
+    <string name="importance_hint">Importance:</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">add</string>
+    <string name="filter">filter</string>
+    <string name="del">delete</string>
+    <string name="edit">edit</string>
+    <string name="title">Title:</string>
+    <string name="text">Text:</string>
+    <string name="add_photo">add photo</string>
+    <string name="ok">OK</string>
+    <string name="filter_by">Filter by:</string>
+    <string name="filter_by_text">Filter by title and text:</string>
+    <string name="filter_by_importance">Filter by importance:</string>
+    <string name="text_choice">Title and text</string>
+    <string name="importance_choice">Importance</string>
+    <string name="date_choice">Date</string>
+</resources>

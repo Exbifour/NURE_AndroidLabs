@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Станчик Лаб1</string>
+    <string name="importance">Важливість:  %d</string>
+    <string name="importance_hint">Важливість:</string>
+    <string name="cancel">Відмінити</string>
+    <string name="add">Додати</string>
+    <string name="filter">Фільтр</string>
+    <string name="del">Видалити</string>
+    <string name="edit">Редагувати</string>
+    <string name="title">Назва:</string>
+    <string name="text">Текст:</string>
+    <string name="add_photo">Додати фото</string>
+    <string name="ok">Добре</string>
+    <string name="filter_by">Фільтрувати за:</string>
+    <string name="filter_by_text">Фільтрування за назвою та текстом:</string>
+    <string name="filter_by_importance">Фільтрування за важливістю:</string>
+    <string name="text_choice">Текст та назва</string>
+    <string name="importance_choice">Важливість</string>
+    <string name="date_choice">Дата</string>
+</resources>
