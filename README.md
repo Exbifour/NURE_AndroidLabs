@@ -9,6 +9,5 @@ Every task composed in 1 project as seprate modules.
 - [x] PZ 3
 - [x] Lab 1 (Minor bugs exist. Read commints comments to learn more)
 - [x] Lab 2 (ToDos not removed. Read commit comments to learn more) 
-- [ ] Lab 3
-- [ ] Lab 4
-- [ ] Lab 5
+- [x] Lab 3 (Major bug: App may crash on exit.)
+- [x] Lab 4
