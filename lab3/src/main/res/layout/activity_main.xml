@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:clipToPadding="false"
+    android:background="@android:color/background_light"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/colorAccent"
+        android:elevation="16dp"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/audioTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/audioTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0.5"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <SeekBar
+            android:id="@+id/audioProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0.8"
+            android:progressTint="@color/colorChosen"
+            android:thumbTint="@color/colorPrimaryDark"
+            android:tickMarkTint="@color/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.7"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <ImageButton
+                android:id="@+id/repeatBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_action_repeat"
+                android:tint="@color/colorNotChosen" />
+
+            <ImageButton
+                android:id="@+id/prevBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_media_previous"
+                android:tint="@color/colorPrimary" />
+
+            <ImageButton
+                android:id="@+id/playPauseBtn"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:elevation="1dp"
+                android:fadingEdge="none"
+                android:src="@android:drawable/ic_media_play"
+                android:tint="@color/colorPrimary" />
+
+            <ImageButton
+                android:id="@+id/nextBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_media_next"
+                android:tint="@color/colorPrimary" />
+
+            <ImageButton
+                android:id="@+id/shuffleBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_action_shuffle"
+                android:tint="@color/colorNotChosen" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
